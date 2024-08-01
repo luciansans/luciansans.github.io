@@ -1,88 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Lucian Sans-Souci</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-image: url("wolf3.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            color: white;
-        }
-
-        h1, h2 {
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        img {
-            color: white;
-            width: 10%;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: rgb(79, 245, 148);
-        }
-    </style>
-</head>
-<body>
-<main>
-    <h1>Lucian Maurice Sans-Souci</h1>
-    <img src="profile pic.jpg"/>
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p> I bring a diverse background with 1 year of experience as a Technical Support Specialist,<br/>
-           aiding technical teams and branches with PC issues, and 1 year as a Merchant Support Agent,</br> 
-           adept at fixing and troubleshooting card machines. <br/>
-           Currently pursuing a Bachelor of Science degree,</br>
-           I am married with two children and find joy in watching anime and playing games in my leisure time.
-          
-        </p>
-    </section>
-    <section id="skills">
-        <h2>Skills</h2>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Lucian Maurice Sans-Souci</h1>
+      <p class="tagline">Technical Support Specialist | Aspiring Cyber Security Expert</p>
+      <nav class="site-nav">
         <ul>
-            <li>HTML, CSS, JavaScript,</li>
-            <li>Python, Data Science,</li>
-            <li>Networking and Troubleshooting of Computers.</li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-    </section>
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>Github: <a href="https://github.com/luciansans" target="_blank">luciansans, </a></p>
-        <p>By following link you will be able to view various projects relating to skills aquired e.g <br/>Python, Html, CSS, Javascript, C++ and many more</p>
-    </section>
-    <section id="contact">
+      </nav>
+    </header>
+
+    <main>
+      <section id="about" class="about-section">
+        <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+        <h2>About Me</h2>
+        <p>
+          I am a dedicated professional with over three years of experience in
+          banking and over six years as an Assistant Manager in sales.
+        </p>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <h2>Curriculum Vitae</h2>
+        <div class="projects-grid">
+          <article class="project">
+            <h3>Career History</h3>
+            <p>Capitec Bank – Technical Support Specialist Dec 2019 to Current</p>
+          </article>
+          <article class="project">
+            <h3>Personal Details</h3>
+            <p>
+              Languages: English/Afrikaans <br>
+              Computer Literacy: JavaScript, C++, Python, HTML and CSS
+            </p>
+          </article>
+          <article class="project">
+            <h3>Educational Details</h3>
+            <p>
+              Richfield – Bachelor of Science in Information Technology 1st Year
+              (specialisation in cyber security) Passed subjects
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:Lucian.sans@icloud.com">Lucian.sans@icloud.com</a></p>
-    </section>
-</main>
-</body>
+        <p>
+          Email:
+          <a href="mailto:lucian.sans-souci@umuzi.org">lucian.sans-souci@umuzi.org</a>
+        </p>
+        <p>Phone: 062001***</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/lucian-sans-souci-31898b121/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/luciansans" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2024 Lucian Maurice Sans-Souci. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
