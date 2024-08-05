@@ -86,7 +86,7 @@ main {
     margin: 0 0.5rem;
     display: inline-block;
     color: #2c54d7;
-    font-size: 3rem; /* Increased icon size */
+    font-size: 3rem; 
     text-decoration: none;
 }
 
@@ -99,4 +99,9 @@ main {
     color: #fff;
     text-align: center;
     padding: 1rem 0;
+}
+
+.github-prompt {
+    text-align: center;
+    margin: 1rem 0;
 }
