@@ -43,7 +43,7 @@ main {
     margin: 2rem auto;
 }
 
-.about-section, .projects-section, .contact-section {
+.about-section, .cv-section, .contact-section {
     background: #fff;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -59,20 +59,20 @@ main {
     margin: 1rem auto;
 }
 
-.projects-grid {
+.cv-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
 }
 
 @media (min-width: 768px) {
-    .projects-grid {
+    .cv-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
-    .projects-grid {
+    .cv-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -82,15 +82,15 @@ main {
     text-align: center;
 }
 
-.social-icons a {
+.github-icon {
     margin: 0 0.5rem;
     display: inline-block;
     color: #2c54d7;
-    font-size: 2rem;
+    font-size: 3rem; /* Increased icon size */
     text-decoration: none;
 }
 
-.social-icons a:hover {
+.github-icon:hover {
     color: #555555;
 }
 
