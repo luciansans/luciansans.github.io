@@ -7,6 +7,8 @@ from ..core.database import get_db
 from ..core.security import verify_password, get_password_hash, create_access_token, decode_access_token
 from ..core.config import settings
 from ..models.user import User
+from ..models.doctor import Doctor
+from ..models.patient import Patient
 
 
 class RegisterRequest(BaseModel):
@@ -96,7 +98,7 @@ def register(
     request: RegisterRequest,
     db: Session = Depends(get_db)
 ):
-    """Register new user."""
+    """Register new user and create associated profile."""
     # Check if user exists
     existing_user = db.query(User).filter(
         (User.username == request.username) | (User.email == request.email)
@@ -118,11 +120,46 @@ def register(
     )
     
     db.add(new_user)
+    db.flush()  # Get user_id without committing
+    
+    # Auto-create Doctor or Patient profile based on role
+    if request.role == "Doctor":
+        # Create doctor profile
+        new_doctor = Doctor(
+            full_name=request.username,  # Use username as default, can be updated later
+            specialization="General Practice",  # Default specialization
+            contact_number="000-000-0000",  # Placeholder
+            email=request.email,
+            room_number=None
+        )
+        db.add(new_doctor)
+        db.flush()
+        
+        # Link user to doctor
+        new_user.doctor_id = new_doctor.doctor_id
+        
+    elif request.role == "Patient":
+        # Create patient profile
+        new_patient = Patient(
+            full_name=request.username,
+            date_of_birth=None,  # Can be updated later
+            contact_number="000-000-0000",
+            email=request.email,
+            address=None,
+            medical_history=None
+        )
+        db.add(new_patient)
+        db.flush()
+        
+        # Link user to patient
+        new_user.patient_id = new_patient.patient_id
+    
     db.commit()
     db.refresh(new_user)
     
     return {
         "message": "User registered successfully",
         "user_id": new_user.user_id,
-        "username": new_user.username
+        "username": new_user.username,
+        "role": new_user.role.value
     }
