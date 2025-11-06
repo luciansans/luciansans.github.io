@@ -4,8 +4,8 @@ const API_CONFIG = {
     // For local development
     LOCAL_API_URL: 'http://localhost:8000/api',
     
-    // For production (update with your Render backend URL)
-    PRODUCTION_API_URL: 'https://your-app-name.onrender.com/api',
+    // For production (your Render backend URL)
+    PRODUCTION_API_URL: 'https://luciansans-github-io.onrender.com/api',
     
     // Automatically detect environment
     getApiUrl: function() {
