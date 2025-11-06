@@ -26,7 +26,7 @@ Complete guide to deploy your application with frontend on GitHub Pages and back
    - **Region**: Choose closest to you
    - **Branch**: `main`
    - **Root Directory**: `backend`
-   - **Runtime**: `Python 3`
+   - **Runtime**: `Python 3.11.0` (Important: Use 3.11, not 3.13)
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
    - **Instance Type**: `Free`
