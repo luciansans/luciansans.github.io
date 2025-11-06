@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from datetime import timedelta
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from ..core.database import get_db
 from ..core.security import verify_password, get_password_hash, create_access_token, decode_access_token
 from ..core.config import settings
@@ -12,7 +12,7 @@ from ..models.user import User
 class RegisterRequest(BaseModel):
     """Request model for user registration."""
     username: str
-    email: EmailStr
+    email: str
     password: str
     role: str = "Patient"
 
