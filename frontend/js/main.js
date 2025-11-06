@@ -1,5 +1,4 @@
-// API Configuration
-const API_BASE_URL = 'http://localhost:8000/api';
+// API_BASE_URL is now defined in config.js
 let authToken = localStorage.getItem('authToken');
 let currentUser = null;
 

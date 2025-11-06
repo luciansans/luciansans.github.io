@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 from typing import List
+import os
 
 
 class Settings(BaseSettings):
@@ -16,19 +17,22 @@ class Settings(BaseSettings):
     # Application
     APP_NAME: str = "Doctor Appointment System"
     APP_VERSION: str = "1.0.0"
-    DEBUG: bool = True
+    DEBUG: bool = False
     
-    # CORS
-    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:8080"
+    # CORS - Default includes GitHub Pages and localhost
+    CORS_ORIGINS: str = "https://luciansans.github.io,http://localhost:3000,http://localhost:8080"
     
     @property
     def cors_origins_list(self) -> List[str]:
         """Convert CORS origins string to list."""
-        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+        origins = [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+        # Filter out empty strings
+        return [origin for origin in origins if origin]
     
     class Config:
         env_file = ".env"
         case_sensitive = True
+        extra = "allow"
 
 
 settings = Settings()
