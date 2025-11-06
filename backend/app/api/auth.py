@@ -2,10 +2,19 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from datetime import timedelta
+from pydantic import BaseModel, EmailStr
 from ..core.database import get_db
 from ..core.security import verify_password, get_password_hash, create_access_token, decode_access_token
 from ..core.config import settings
 from ..models.user import User
+
+
+class RegisterRequest(BaseModel):
+    """Request model for user registration."""
+    username: str
+    email: EmailStr
+    password: str
+    role: str = "Patient"
 
 router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
@@ -84,16 +93,13 @@ def get_current_user_info(current_user: User = Depends(get_current_user)):
 
 @router.post("/register")
 def register(
-    username: str,
-    email: str,
-    password: str,
-    role: str = "Patient",
+    request: RegisterRequest,
     db: Session = Depends(get_db)
 ):
     """Register new user."""
     # Check if user exists
     existing_user = db.query(User).filter(
-        (User.username == username) | (User.email == email)
+        (User.username == request.username) | (User.email == request.email)
     ).first()
     
     if existing_user:
@@ -104,10 +110,10 @@ def register(
     
     # Create new user
     new_user = User(
-        username=username,
-        email=email,
-        password_hash=get_password_hash(password),
-        role=role,
+        username=request.username,
+        email=request.email,
+        password_hash=get_password_hash(request.password),
+        role=request.role,
         is_active=True
     )
     

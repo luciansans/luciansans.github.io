@@ -107,18 +107,28 @@ async function handleRegister(e) {
     const role = document.getElementById('role').value;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/auth/register?username=${username}&email=${email}&password=${password}&role=${role}`, {
+        const response = await fetch(`${API_BASE_URL}/auth/register`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+                role: role
+            })
         });
 
         if (!response.ok) {
-            throw new Error('Registration failed');
+            const errorData = await response.json();
+            throw new Error(errorData.detail || 'Registration failed');
         }
 
         showToast('Registration successful! Please login.', 'success');
         navigateTo('login');
     } catch (error) {
-        showToast('Registration failed. Username or email may already exist.', 'error');
+        showToast(error.message || 'Registration failed. Username or email may already exist.', 'error');
         console.error('Registration error:', error);
     }
 }
