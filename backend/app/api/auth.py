@@ -139,14 +139,17 @@ def register(
         new_user.doctor_id = new_doctor.doctor_id
         
     elif request.role == "Patient":
-        # Create patient profile
+        # Create patient profile with required default values
+        from datetime import date
         new_patient = Patient(
             full_name=request.username,
-            date_of_birth=None,  # Can be updated later
-            contact_number="000-000-0000",
+            gender="Not Specified",  # Required field - can be updated later
+            date_of_birth=date(2000, 1, 1),  # Required field - placeholder date
+            contact_number="000-000-0000",  # Required field - placeholder
             email=request.email,
             address=None,
-            medical_history=None
+            medical_history=None,
+            consent_flag=False
         )
         db.add(new_patient)
         db.flush()
