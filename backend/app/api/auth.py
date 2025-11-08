@@ -141,11 +141,14 @@ def register(
     elif request.role == "Patient":
         # Create patient profile with required default values
         from datetime import date
+        import random
+        # Generate unique placeholder contact number to avoid UNIQUE constraint
+        unique_contact = f"000-{random.randint(100,999)}-{random.randint(1000,9999)}"
         new_patient = Patient(
             full_name=request.username,
             gender="Not Specified",  # Required field - can be updated later
             date_of_birth=date(2000, 1, 1),  # Required field - placeholder date
-            contact_number="000-000-0000",  # Required field - placeholder
+            contact_number=unique_contact,  # Required field - unique placeholder
             email=request.email,
             address=None,
             medical_history=None,
